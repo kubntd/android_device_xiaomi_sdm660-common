@@ -23,7 +23,7 @@
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/haium.mk)
 $(call inherit-product-if-exists, build/target/product/embedded.mk)
 
 # Enable updating of APEXes
@@ -126,9 +126,6 @@ PRODUCT_COPY_FILES += \
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService \
-    antradio_app \
-    com.dsi.ant.antradio_library \
     libantradio
 
 # ANT Permission
@@ -145,7 +142,6 @@ PRODUCT_PACKAGES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    BluetoothQti \
     audio.bluetooth.default \
     android.hardware.bluetooth.audio@2.0-impl \
     liba2dpoffload \
@@ -171,19 +167,13 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     android.hardware.camera.provider@2.5 \
-    vendor.qti.hardware.camera.device@1.0 \
-    Snap
+    vendor.qti.hardware.camera.device@1.0 
 
 # Codec2 modules
 PRODUCT_PACKAGES += \
     com.android.media.swcodec \
     libsfplugin_ccodec
 
-# Connectivity Engine support (CNE)
-PRODUCT_PACKAGES += \
-    cneapiclient \
-    com.quicinc.cne \
-    services-ext
 
 # Configstore
 PRODUCT_PACKAGES += \
@@ -212,11 +202,6 @@ PRODUCT_PACKAGES += \
     libtinyxml \
     vendor.display.config@1.9 \
     vendor.display.config@1.9_vendor
-
-# Doze
-PRODUCT_PACKAGES += \
-    XiaomiDoze
-
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
@@ -277,23 +262,10 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/idc/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
     $(COMMON_PATH)/configs/idc/uinput-goodix.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-goodix.idc
 
-# IFAAService
-PRODUCT_PACKAGES += \
-    IFAAService \
-    org.ifaa.android.manager
-
-# IFAA JAR
-PRODUCT_BOOT_JARS += \
-    org.ifaa.android.manager
 
 # IMS
 PRODUCT_PACKAGES += \
-    ims-ext-common_system \
     ims_ext_common.xml \
-
-# IMS JAR
-PRODUCT_BOOT_JARS += \
-    ims-ext-common_system
 
 # Init
 PRODUCT_PACKAGES += \
@@ -315,8 +287,6 @@ PRODUCT_PACKAGES += \
 # FM
 ifeq ($(BOARD_HAVE_QCOM_FM),true)
 PRODUCT_PACKAGES += \
-    FM2 \
-    libqcomfm_jni \
     qcom.fmradio \
     qcom.fmradio.xml
 
@@ -456,9 +426,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.2-service-qti
 
-# Preopt SystemUI
-PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
-
 # Privapp-Permissions
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/privapp-permission/privapp-permissions-qti-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-qti.xml \
@@ -506,12 +473,7 @@ PRODUCT_PACKAGES += \
     qti_telephony_hidl_wrapper.xml \
     qti-telephony-utils \
     qti_telephony_utils.xml \
-    rild \
-    telephony-ext
-
-# RIL JAR
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+    rild 
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
@@ -557,10 +519,6 @@ PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-service \
     thermal.sdm660
 
-# Thermal Controller
-PRODUCT_PACKAGES += \
-   ThermalController
-
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.xiaomi_sdm660
@@ -595,11 +553,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     libaacwrapper \
     libnl
-
-# WiFi Display JAR
-PRODUCT_BOOT_JARS += \
-    WfdCommon
-
-# XiaomiParts
-PRODUCT_PACKAGES += \
-   XiaomiParts
